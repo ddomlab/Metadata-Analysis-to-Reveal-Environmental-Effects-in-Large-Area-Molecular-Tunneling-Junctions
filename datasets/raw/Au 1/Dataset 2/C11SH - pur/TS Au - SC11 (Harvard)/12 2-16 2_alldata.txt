@@ -1,0 +1,9 @@
+Date: November 30, 2010
+Month: November
+File Name: 12 2-16 2
+Season: Fall
+Time: 11:45 AM
+Electrode: Au
+Carbon Number: 11
+Time of Day: Morning
+Junction Diameter: 0.500000

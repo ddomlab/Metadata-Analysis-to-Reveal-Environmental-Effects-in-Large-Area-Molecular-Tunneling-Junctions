@@ -1,0 +1,9 @@
+Date: August 14, 2009
+Month: August
+File Name: 2 2-20 500mV 500ms
+Season: Summer
+Time: 10:27 PM
+Electrode: Ag
+Carbon Number: 16
+Time of Day: Evening
+Junction Diameter: 0.500000
