@@ -3,6 +3,8 @@ from pathlib import Path
 import re
 from typing import Dict,List,Union
 import pandas as pd
+import numpy as np
+
 
 HERE: Path = Path(__file__).resolve().parent
 RAW: Path = HERE.parent.parent/'datasets'/'raw'
@@ -138,6 +140,50 @@ def convert_txt_to_csv(txt_file_path):
     
     except Exception as e:
         raise RuntimeError(f"Failed to convert '{txt_file_path}': {e}")
+
+
+
+v_scan_pos = [*(np.arange(0, 55, 5)/100), *(np.arange(50, -55, -5)/100), *(np.arange(-50, 5, 5)/100)]
+v_scan_neg = [*(np.arange(0, -55, -5)/100), *(np.arange(-50, 55, 5)/100), *(np.arange(50, -5, -5)/100)]
+
+def assign_pattern_id(data: pd.DataFrame, column: str, new_column_name: str, scan_direction_column: str) -> pd.DataFrame:
+    pattern_length = len(v_scan_pos)
+    assert len(v_scan_pos) == len(v_scan_neg), "Patterns are not the same length!"
+    current_id = 0
+    ids = []
+    scan_direction = []
+
+    i = 0
+    while i <= len(data) - pattern_length:
+        # Check if the current slice matches the pattern
+        if list(data[column].iloc[i:i + pattern_length]) == v_scan_pos:
+            # Assign the current ID to all rows in the matched pattern
+            ids.extend([current_id] * pattern_length)
+            # If scan is toward positive V first, assign 1
+            scan_direction.extend([1] * pattern_length)
+            current_id += 1
+            i += pattern_length  # Move to the next section after the matched pattern
+        elif list(data[column].iloc[i:i + pattern_length]) == v_scan_neg:
+            # Assign the current ID to all rows in the matched pattern
+            ids.extend([current_id] * pattern_length)
+            # If scan is toward negative V first, assign 0
+            scan_direction.extend([0] * pattern_length)
+            current_id += 1
+            i += pattern_length  # Move to the next section after the matched pattern
+        else:
+            # Assign NaN to the current row and move one step forward
+            ids.append(np.nan)
+            scan_direction.append(np.nan)
+            i += 1
+
+    # For any remaining rows at the end that don't have enough to match the pattern, assign NaN
+    padding = [np.nan] * (len(data) - len(ids))
+    ids.extend(padding)
+    scan_direction.extend(padding)
+
+    data[new_column_name] = ids
+    data[scan_direction_column] = scan_direction
+    return data
 
 # for location in os.listdir(RAW):
 #     # print(location)
