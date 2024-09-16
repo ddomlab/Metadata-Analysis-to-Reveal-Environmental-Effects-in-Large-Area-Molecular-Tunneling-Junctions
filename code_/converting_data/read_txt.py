@@ -16,27 +16,28 @@ data_dic: Dict = {
                 'carbon number':[],
                 'electrode':[],
                 'voltage':[], 
-                'abs J':[], 
+                'absJ':[], 
                 'Log Abs Current Density':[], 
                 'J':[],
-                'test duration (s)':[],#below is metadata
+                'current':[],
+                'time':[],#below is metadata
                 'date':[],
-                'time':[],
-                'V(high) (V)':[],
-                'V(low) (V)':[],
-                'V(start/end) (V)':[],
-                'step (V)':[],
+                'start time':[],
+                'V(high)':[],
+                'V(low)':[],
+                'V(start/end)':[],
+                'step':[],
                 'NPLC':[],
-                'delay (s)':[],
-                'autozero time (s)':[],
+                'delay':[],
+                'autozero time':[],
                 'number of V(high) to V(low) spans':[],
                 'Junction diameter':[],
                 'Magnification':[],
-                'temperature':[],
-                'humidity':[],
-                'scan_ID':[],
-                'file_path':[],
-                'substrate_ID':[],
+                # 'temperature':[],
+                # 'humidity':[],
+                # 'scan_ID':[],
+                # 'file_path':[],
+                # 'substrate_ID':[],
                 } 
 
 
@@ -45,10 +46,11 @@ data_arranged_by_loop_array: Dict ={
                                     'carbon number':[],
                                     'electrode':[],
                                     'voltage':[], # list of array
-                                    'abs J':[], # list of array
-                                    'Log Abs Current Density':[], # list of array
+                                    'absJ':[], # list of array
+                                    # 'Log Abs Current Density':[], # list of array
                                     'J':[], # list of array
-                                    'test duration (s)':[],#below is metadata # list of array
+                                    'current':[],
+                                    'time':[],#below is metadata # list of array
                                     'date':[],
                                     'time':[],
                                     'V(high) (V)':[],
@@ -61,11 +63,11 @@ data_arranged_by_loop_array: Dict ={
                                     'number of V(high) to V(low) spans':[],
                                     'Junction diameter':[],
                                     'Magnification':[],
-                                    'temperature':[],
-                                    'humidity':[],
-                                    'scan_ID':[],
-                                    'scan_direction':[],
-                                    'substrate_ID':[],
+                                    # 'temperature':[],
+                                    # 'humidity':[],
+                                    # 'scan_ID':[],
+                                    # 'scan_direction':[],
+                                    # 'substrate_ID':[],
 
                                     } 
 
@@ -80,7 +82,7 @@ def parse_metadata(file_path)->Dict:
     before_comments = True
     collected_metadata: Dict = {
     'date': None,
-    'time': None,
+    'start time': None,
     'V(high)': None,
     'V(low)': None,
     'V(start/end)': None,
@@ -109,33 +111,45 @@ def parse_metadata(file_path)->Dict:
                     collected_metadata['date']=line
                     continue
                 elif time_pattern.match(line):
-                    collected_metadata['time']=line
+                    collected_metadata['start time']=line
                     continue
 
             # Skip empty lines
             if not line:
                 continue
+            try:
+                # Process key-value pairs
+                if "=" in line and before_comments:
+                    key, value = line.split("=", 1)
+                    key = key.strip()
+                    value = value.strip()
 
-            # Process key-value pairs
-            if "=" in line and before_comments:
-                key, value = line.split("=", 1)
-                key = key.strip()
-                value = value.strip()
+                    # Attempt to convert value to float
+                    try:
+                        value = float(value.split()[0])
+                    except ValueError:
+                        value = None  # Use None for non-numeric values
+                    if key in collected_metadata:
+                        collected_metadata[key] = value
+            except Exception as e:
+                raise RuntimeError(f"Failed to convert metadata to dict: {e}")
 
-                # Attempt to convert value to float
-                try:
-                    value = float(value.split()[0])
-                except ValueError:
-                    value = None  # Use None for non-numeric values
-                if key in collected_metadata:
-                    collected_metadata[key] = value
+            
     return collected_metadata
 
+def clean_column_names(column_name):
+    # Remove numbers and extra underscores
+    parts = column_name.strip().split("_") 
+    return parts[0]
 
 def convert_txt_to_csv(txt_file_path):
     try:
         # Read the text file
         df = pd.read_csv(txt_file_path, sep='\t')
+        df.columns = [clean_column_names(col) for col in df.columns]
+
+# Optionally, drop any unwanted columns by name
+        df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
         return df 
     
     except Exception as e:
@@ -167,7 +181,7 @@ def assign_pattern_id(data: pd.DataFrame, column: str, new_column_name: str, sca
             # Assign the current ID to all rows in the matched pattern
             ids.extend([current_id] * pattern_length)
             # If scan is toward negative V first, assign 0
-            scan_direction.extend([0] * pattern_length)
+            scan_direction.extend([-1] * pattern_length)
             current_id += 1
             i += pattern_length  # Move to the next section after the matched pattern
         else:
@@ -184,6 +198,10 @@ def assign_pattern_id(data: pd.DataFrame, column: str, new_column_name: str, sca
     data[new_column_name] = ids
     data[scan_direction_column] = scan_direction
     return data
+
+# assign_pattern_id(device_config, "Voltage", "scan ID", "scan +V 1st")
+
+
 
 # for location in os.listdir(RAW):
 #     # print(location)
@@ -214,10 +232,31 @@ def assign_pattern_id(data: pd.DataFrame, column: str, new_column_name: str, sca
 
 
 
-file_path = r"C:\Users\sdehgha2\OneDrive - North Carolina State University\Desktop\PhD code\large area tunneling j\LAMoTuJ\datasets\raw\Ames, Iowa\Au\C9\04142016\5 2-11_data.txt"
+file_path_for_data = r"C:\Users\sdehgha2\OneDrive - North Carolina State University\Desktop\PhD code\large area tunneling j\LAMoTuJ\datasets\raw\Ames, Iowa\Ag\C15\Substrate 1\5 2-21_data.txt"
+file_path_for_metadata = r"C:\Users\sdehgha2\OneDrive - North Carolina State University\Desktop\PhD code\large area tunneling j\LAMoTuJ\datasets\raw\Ames, Iowa\Ag\C15\Substrate 1\5 2-21_data"
+
+x_df= convert_txt_to_csv(file_path_for_data)
+x_df['log_absJ'] = np.log10(x_df['absJ'])
+x_df = assign_pattern_id(x_df, "voltage", "scan ID", "scan V direction")
+print(x_df)
+# x_dic = x_df.to_dict(orient='list')
+# # Print the dictionary with the parsed data
+# di = parse_metadata(file_path=file_path_for_metadata)
 
 
-print(convert_txt_to_csv(file_path))
+# print(x_df)
+# for key in x_df:
+#     if key in data_dic:
+#         data_dic[key].extend(x_dic[key])
 
-# Print the dictionary with the parsed data
-print(parse_metadata(file_path=file_path))
+# df_length = len(x_df)
+# print(df_length)
+# for key, value in di.items():
+#     if key in data_dic:
+#         data_dic[key].extend([value] * df_length)
+#     else:
+#         print(f"Key '{key}' not found in data_dic.")
+
+# print(pd.DataFrame(data_dic))
+# df = pd.DataFrame(data_dic)
+# print(df)
