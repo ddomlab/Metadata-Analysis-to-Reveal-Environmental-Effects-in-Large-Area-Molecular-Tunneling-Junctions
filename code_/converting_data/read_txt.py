@@ -321,7 +321,7 @@ df_grouped = pd.DataFrame(data_arranged_by_array)
 test_grouped = HERE/"grouped_tunneling_J.csv"
 df_grouped.to_csv(test_grouped)
 
-error_log_file = HERE/"error_log.csv"
+error_log_file = HERE/"error_log.json"
 
 with error_log_file.open("w") as f:
     json.dump(error_log, f, indent=2)
