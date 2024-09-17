@@ -17,7 +17,7 @@ data_dic: Dict = {
                 'electrode':[],
                 'voltage':[], 
                 'absJ':[], 
-                'Log Abs Current Density':[], 
+                'log_absJ':[], 
                 'J':[],
                 'current':[],
                 'time':[],#below is metadata
@@ -33,44 +33,56 @@ data_dic: Dict = {
                 'number of V(high) to V(low) spans':[],
                 'Junction diameter':[],
                 'Magnification':[],
+                'scan V direction':[],
                 # 'temperature':[],
                 # 'humidity':[],
-                # 'scan_ID':[],
+                'scan ID':[],
                 # 'file_path':[],
                 # 'substrate_ID':[],
+                'Path':[]
                 } 
 
 
-data_arranged_by_loop_array: Dict ={
+data_arranged_by_array: Dict = {
                                     'location':[],
                                     'carbon number':[],
                                     'electrode':[],
-                                    'voltage':[], # list of array
-                                    'absJ':[], # list of array
-                                    # 'Log Abs Current Density':[], # list of array
-                                    'J':[], # list of array
+                                    'voltage':[], 
+                                    'absJ':[], 
+                                    'log_absJ':[], 
+                                    'J':[],
                                     'current':[],
-                                    'time':[],#below is metadata # list of array
+                                    'time':[],#below is metadata
                                     'date':[],
-                                    'time':[],
-                                    'V(high) (V)':[],
-                                    'V(low) (V)':[],
-                                    'V(start/end) (V)':[],
-                                    'step (V)':[],
+                                    'start time':[],
+                                    'V(high)':[],
+                                    'V(low)':[],
+                                    'V(start/end)':[],
+                                    'step':[],
                                     'NPLC':[],
-                                    'delay (s)':[],
-                                    'autozero time (s)':[],
+                                    'delay':[],
+                                    'autozero time':[],
                                     'number of V(high) to V(low) spans':[],
                                     'Junction diameter':[],
                                     'Magnification':[],
+                                    'scan V direction':[],
                                     # 'temperature':[],
                                     # 'humidity':[],
-                                    # 'scan_ID':[],
-                                    # 'scan_direction':[],
+                                    'scan ID':[],
+                                    # 'file_path':[],
                                     # 'substrate_ID':[],
-
+                                    'Path':[]
                                     } 
 
+
+
+def extract_C_number(s: str) -> int:
+    # Define the pattern to find 'C' followed by digits
+    match = re.search(r'C(\d+)', s, re.IGNORECASE)
+    if match:
+        return int(match.group(1))
+    else:
+        return None
 
 
 def parse_metadata(file_path)->Dict:
@@ -137,12 +149,13 @@ def parse_metadata(file_path)->Dict:
             
     return collected_metadata
 
-def clean_column_names(column_name):
+def clean_column_names(column_name:str) -> str:
     # Remove numbers and extra underscores
     parts = column_name.strip().split("_") 
     return parts[0]
 
-def convert_txt_to_csv(txt_file_path):
+
+def convert_txt_to_dataframe(txt_file_path) -> pd.DataFrame:
     try:
         # Read the text file
         df = pd.read_csv(txt_file_path, sep='\t')
@@ -160,7 +173,7 @@ def convert_txt_to_csv(txt_file_path):
 v_scan_pos = [*(np.arange(0, 55, 5)/100), *(np.arange(50, -55, -5)/100), *(np.arange(-50, 5, 5)/100)]
 v_scan_neg = [*(np.arange(0, -55, -5)/100), *(np.arange(-50, 55, 5)/100), *(np.arange(50, -5, -5)/100)]
 
-def assign_pattern_id(data: pd.DataFrame, column: str, new_column_name: str, scan_direction_column: str) -> pd.DataFrame:
+def assign_pattern_id(data: pd.DataFrame, column: str, new_column_name: str, scan_direction_column: str) -> tuple[pd.DataFrame,pd.DataFrame]:
     pattern_length = len(v_scan_pos)
     assert len(v_scan_pos) == len(v_scan_neg), "Patterns are not the same length!"
     current_id = 0
@@ -197,48 +210,120 @@ def assign_pattern_id(data: pd.DataFrame, column: str, new_column_name: str, sca
 
     data[new_column_name] = ids
     data[scan_direction_column] = scan_direction
-    return data
 
-# assign_pattern_id(device_config, "Voltage", "scan ID", "scan +V 1st")
+    aggregated_data = data.groupby(new_column_name).agg({
+        'voltage': list,
+        'absJ': list,
+        'J': list,
+        'current': list,
+        'time': list,
+        'log_absJ': list,
+        new_column_name: list,
+        scan_direction_column: list
+    })
 
-
-
-# for location in os.listdir(RAW):
-#     # print(location)
-#     if location == 'Ames, Iowa':
-#         # print(location)
-#         print(f'location is {location}')
-#         location_path = os.path.join(RAW, location)
-#         for electrode in os.listdir(location_path):
-#             print(f'electrode:{electrode}')
-#             carbon_number_path = os.path.join(location_path,electrode)
-#             for carbon_number in os.listdir(carbon_number_path):     
-#                 print(f'carbon_number is {carbon_number}')    
-#                 sub_path = os.path.join(carbon_number_path,carbon_number)
-#                 for sub in os.listdir(sub_path):
-#                     print(f'sub is : {sub}')
-#                     device_path = Path(os.path.join(sub_path,sub))
-#                     #     # two section: one is .text and another is wothout it
-#                     metadata_file_paths= []
-#                     data_file_paths:List[Path] = device_path.rglob("*_data.txt")
-#                     for data_file in data_file_paths:
-#                         # making the list of metadata
-#                         meta_data_files = data_file.with_name(data_file.stem.replace("_data", ""))
-#                         metadata_file_paths.append(meta_data_files)
-                    
-#                     # processing both files simultaneously 
-#                     for meta , dat in zip(metadata_file_paths,data_file_paths):
-#                         print(meta,  '\t'  , dat )
+    return data,aggregated_data
 
 
 
-file_path_for_data = r"C:\Users\sdehgha2\OneDrive - North Carolina State University\Desktop\PhD code\large area tunneling j\LAMoTuJ\datasets\raw\Ames, Iowa\Ag\C15\Substrate 1\5 2-21_data.txt"
-file_path_for_metadata = r"C:\Users\sdehgha2\OneDrive - North Carolina State University\Desktop\PhD code\large area tunneling j\LAMoTuJ\datasets\raw\Ames, Iowa\Ag\C15\Substrate 1\5 2-21_data"
 
-x_df= convert_txt_to_csv(file_path_for_data)
-x_df['log_absJ'] = np.log10(x_df['absJ'])
-x_df = assign_pattern_id(x_df, "voltage", "scan ID", "scan V direction")
-print(x_df)
+for location in os.listdir(RAW):
+    # print(location)
+        # print(location)
+        print(f'location is {location}')
+
+        location_path = os.path.join(RAW, location)
+        for electrode in os.listdir(location_path):
+            print(f'electrode:{electrode}')
+            carbon_number_path = os.path.join(location_path,electrode)
+            for carbon_number in os.listdir(carbon_number_path):     
+                print(f'carbon_number is {carbon_number}')    
+                sub_path = os.path.join(carbon_number_path,carbon_number)
+                for sub in os.listdir(sub_path):
+                    print(f'sub is : {sub}')
+                    device_path = Path(os.path.join(sub_path,sub))
+                    #     # two section: one is .text and another is wothout it
+                    # add a try for the not meta pairs and add to list of errors!
+                    metadata_file_paths= []
+                    data_file_paths:List[Path] = list(device_path.rglob("*_data.txt"))
+                    for data_file in data_file_paths:
+                        # making the list of metadata
+                        meta_data_files = data_file.with_name(data_file.stem.replace("_data", ""))
+                        metadata_file_paths.append(meta_data_files)
+                    # processing both files simultaneously 
+                    # print(data_file_paths)
+                    for meta_file_path , data_file_path in zip(metadata_file_paths,data_file_paths):
+                        # print(meta_file_path,  '\t'  , data_file_path )
+                        
+                        C_number:int = extract_C_number(carbon_number)
+                        df_extracted: pd.DataFrame = convert_txt_to_dataframe(data_file_path)
+                        # Calculate the log of absJ
+                        df_extracted['log_absJ'] = np.log10(df_extracted['absJ'])
+                        df_extracted, grouped_pattern = assign_pattern_id(df_extracted, "voltage", "scan ID", "scan V direction")
+                        extracted_data_dict: Dict = df_extracted.to_dict(orient='list')
+                        grouped_pattern_dict: Dict = grouped_pattern.to_dict(orient='list')
+                        meta_dict: Dict = parse_metadata(file_path=meta_file_path)
+
+
+
+                        for key in extracted_data_dict:
+                            if key in data_dic:
+                                data_dic[key].extend(extracted_data_dict[key])
+
+                        # for grouped
+                        for key in grouped_pattern_dict:
+                            if key in data_arranged_by_array:
+                                data_arranged_by_array[key].extend(grouped_pattern_dict[key])
+
+                        data_length = len(df_extracted)
+                        grouped_length = len(grouped_pattern)
+
+                        for key, value in meta_dict.items():
+                            if key in data_dic:
+                                data_dic[key].extend([value] * data_length)
+                            else:
+                                print(f"Key '{key}' not found in data_dic.")
+
+                        # for grouped
+                        for key, value in meta_dict.items():
+                            if key in data_arranged_by_array:
+                                data_arranged_by_array[key].extend([value] * grouped_length)
+                            else:
+                                print(f"Key '{key}' not found in data_arranged_by_array.")
+                        
+                        data_dic['carbon number'].extend([C_number] * data_length)
+                        data_dic['electrode'].extend([electrode] * data_length)
+                        data_dic['location'].extend([location] * data_length)
+                        data_dic['Path'].extend([meta_file_path] * data_length)
+
+                        # for grouped
+                        data_arranged_by_array['carbon number'].extend([C_number] * grouped_length)
+                        data_arranged_by_array['electrode'].extend([electrode] * grouped_length)
+                        data_arranged_by_array['location'].extend([location] * grouped_length)
+                        data_arranged_by_array['Path'].extend([meta_file_path] * grouped_length)
+
+
+
+df = pd.DataFrame(data_dic)
+test = HERE/"test_all.csv"
+df.to_csv(test)
+df_grouped = pd.DataFrame(data_arranged_by_array)
+test_grouped = HERE/"test_grouped.csv"
+df_grouped.to_csv(test_grouped)
+
+# file_path_for_data = r"C:\Users\sdehgha2\OneDrive - North Carolina State University\Desktop\PhD code\large area tunneling j\LAMoTuJ\datasets\raw\Ames, Iowa\Ag\C15\Substrate 1\5 2-21_data.txt"
+# file_path_for_metadata = r"C:\Users\sdehgha2\OneDrive - North Carolina State University\Desktop\PhD code\large area tunneling j\LAMoTuJ\datasets\raw\Ames, Iowa\Ag\C15\Substrate 1\5 2-21_data"
+
+# x_df= convert_txt_to_csv(file_path_for_data)
+# x_df['log_absJ'] = np.log10(x_df['absJ'])
+# x_df, agg_df = assign_pattern_id(x_df, "voltage", "scan ID", "scan V direction")
+
+# print(agg_df)
+
+# test = HERE/"test_grouped.csv"
+# agg_df.to_csv(test)
+
+
 # x_dic = x_df.to_dict(orient='list')
 # # Print the dictionary with the parsed data
 # di = parse_metadata(file_path=file_path_for_metadata)
