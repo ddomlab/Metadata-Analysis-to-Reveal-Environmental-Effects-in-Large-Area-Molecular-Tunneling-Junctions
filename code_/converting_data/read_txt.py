@@ -4,6 +4,7 @@ import re
 from typing import Dict,List,Union
 import pandas as pd
 import numpy as np
+import json
 
 
 HERE: Path = Path(__file__).resolve().parent
@@ -226,7 +227,7 @@ def assign_pattern_id(data: pd.DataFrame, column: str, new_column_name: str, sca
 
 
 
-
+error_log = []
 for location in os.listdir(RAW):
     # print(location)
         # print(location)
@@ -250,21 +251,30 @@ for location in os.listdir(RAW):
                         # making the list of metadata
                         meta_data_files = data_file.with_name(data_file.stem.replace("_data", ""))
                         metadata_file_paths.append(meta_data_files)
-                    # processing both files simultaneously 
+                            
+
+                            
+                                        # processing both files simultaneously 
                     # print(data_file_paths)
                     for meta_file_path , data_file_path in zip(metadata_file_paths,data_file_paths):
                         # print(meta_file_path,  '\t'  , data_file_path )
-                        
-                        C_number:int = extract_C_number(carbon_number)
-                        df_extracted: pd.DataFrame = convert_txt_to_dataframe(data_file_path)
-                        # Calculate the log of absJ
-                        df_extracted['log_absJ'] = np.log10(df_extracted['absJ'])
-                        df_extracted, grouped_pattern = assign_pattern_id(df_extracted, "voltage", "scan ID", "scan V direction")
-                        extracted_data_dict: Dict = df_extracted.to_dict(orient='list')
-                        grouped_pattern_dict: Dict = grouped_pattern.to_dict(orient='list')
-                        meta_dict: Dict = parse_metadata(file_path=meta_file_path)
+                        try:
+                            C_number:int = extract_C_number(carbon_number)
+                            df_extracted: pd.DataFrame = convert_txt_to_dataframe(data_file_path)
+                            # Calculate the log of absJ
+                            df_extracted['log_absJ'] = np.log10(df_extracted['absJ'])
+                            df_extracted, grouped_pattern = assign_pattern_id(df_extracted, "voltage", "scan ID", "scan V direction")
+                            extracted_data_dict: Dict = df_extracted.to_dict(orient='list')
+                            grouped_pattern_dict: Dict = grouped_pattern.to_dict(orient='list')
+                            meta_dict: Dict = parse_metadata(file_path=meta_file_path)
 
-
+                        except Exception as e:
+                            # Capture any error and add it to the error log
+                            error_log.append({
+                                "file": str(data_file_path),   # Store the file that caused the error
+                                "error": str(e)           # Store the error message
+                            })
+                            continue
 
                         for key in extracted_data_dict:
                             if key in data_dic:
@@ -305,11 +315,16 @@ for location in os.listdir(RAW):
 
 
 df = pd.DataFrame(data_dic)
-test = HERE/"test_all.csv"
+test = HERE/"full_tunneling_J.csv"
 df.to_csv(test)
 df_grouped = pd.DataFrame(data_arranged_by_array)
-test_grouped = HERE/"test_grouped.csv"
+test_grouped = HERE/"grouped_tunneling_J.csv"
 df_grouped.to_csv(test_grouped)
+
+error_log_file = HERE/"error_log.csv"
+
+with error_log_file.open("w") as f:
+    json.dump(error_log, f, indent=2)
 
 # file_path_for_data = r"C:\Users\sdehgha2\OneDrive - North Carolina State University\Desktop\PhD code\large area tunneling j\LAMoTuJ\datasets\raw\Ames, Iowa\Ag\C15\Substrate 1\5 2-21_data.txt"
 # file_path_for_metadata = r"C:\Users\sdehgha2\OneDrive - North Carolina State University\Desktop\PhD code\large area tunneling j\LAMoTuJ\datasets\raw\Ames, Iowa\Ag\C15\Substrate 1\5 2-21_data"
