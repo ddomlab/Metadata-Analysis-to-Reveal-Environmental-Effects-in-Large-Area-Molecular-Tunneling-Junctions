@@ -326,37 +326,3 @@ error_log_file = HERE/"error_log.json"
 with error_log_file.open("w") as f:
     json.dump(error_log, f, indent=2)
 
-# file_path_for_data = r"C:\Users\sdehgha2\OneDrive - North Carolina State University\Desktop\PhD code\large area tunneling j\LAMoTuJ\datasets\raw\Ames, Iowa\Ag\C15\Substrate 1\5 2-21_data.txt"
-# file_path_for_metadata = r"C:\Users\sdehgha2\OneDrive - North Carolina State University\Desktop\PhD code\large area tunneling j\LAMoTuJ\datasets\raw\Ames, Iowa\Ag\C15\Substrate 1\5 2-21_data"
-
-# x_df= convert_txt_to_csv(file_path_for_data)
-# x_df['log_absJ'] = np.log10(x_df['absJ'])
-# x_df, agg_df = assign_pattern_id(x_df, "voltage", "scan ID", "scan V direction")
-
-# print(agg_df)
-
-# test = HERE/"test_grouped.csv"
-# agg_df.to_csv(test)
-
-
-# x_dic = x_df.to_dict(orient='list')
-# # Print the dictionary with the parsed data
-# di = parse_metadata(file_path=file_path_for_metadata)
-
-
-# print(x_df)
-# for key in x_df:
-#     if key in data_dic:
-#         data_dic[key].extend(x_dic[key])
-
-# df_length = len(x_df)
-# print(df_length)
-# for key, value in di.items():
-#     if key in data_dic:
-#         data_dic[key].extend([value] * df_length)
-#     else:
-#         print(f"Key '{key}' not found in data_dic.")
-
-# print(pd.DataFrame(data_dic))
-# df = pd.DataFrame(data_dic)
-# print(df)
