@@ -1,0 +1,262 @@
+[
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Ag\\c12\\sc12\\spot 17 scan 1",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Ag\\\\c12\\\\sc12\\\\spot 17 scan 1'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Ag\\c14\\20080515 (C-14 recryst on Ag RT)_sample 1\\test_data.txt",
+    "error": "Invalid spot ID for file: test_data.txt"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Ag\\c16\\20080807 (C16 Ag RT 16.5hrs)\\3 1 500mv 500ms.txt",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Ag\\\\c16\\\\20080807 (C16 Ag RT 16.5hrs)\\\\3 1 500mv 500ms.txt'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Ag\\c16\\20080807 (C16 Ag RT 19hrs)\\3 2 500mv 500ms",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Ag\\\\c16\\\\20080807 (C16 Ag RT 19hrs)\\\\3 2 500mv 500ms'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Ag\\c16\\20080812 (C16 Ag RT 19hrs)\\6 3-22 500mv 500ms",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Ag\\\\c16\\\\20080812 (C16 Ag RT 19hrs)\\\\6 3-22 500mv 500ms'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Ag\\c16\\20080812 (C16 Ag RT 21_5hrs)\\4 2-21 500mv 500ms",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Ag\\\\c16\\\\20080812 (C16 Ag RT 21_5hrs)\\\\4 2-21 500mv 500ms'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Ag\\c16\\sc16_11-03-2009\\spot 12 scan 1.txt",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Ag\\\\c16\\\\sc16_11-03-2009\\\\spot 12 scan 1.txt'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\10 10-20",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\10 10-20'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\10 1",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\10 1'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\10 2",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\10 2'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\10 3",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\10 3'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\10 4",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\10 4'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\10 5-9",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\10 5-9'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\11 10",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\11 10'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\11 11",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\11 11'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\11 12",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\11 12'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\11 13-15",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\11 13-15'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\11 16-20",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\11 16-20'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\11 1",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\11 1'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\11 2",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\11 2'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\11 3-5",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\11 3-5'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\11 6",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\11 6'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\11 7",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\11 7'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\11 8",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\11 8'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\11 9",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\11 9'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\12 1",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\12 1'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\12 2",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\12 2'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\12 3-5",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\12 3-5'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\12 6-20",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\12 6-20'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\13 10-20",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\13 10-20'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\13 1",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\13 1'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\13 2",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\13 2'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\13 3-5",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\13 3-5'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\13 6",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\13 6'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\13 7-9",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\13 7-9'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\14 1",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\14 1'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\14 2",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\14 2'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\14 3",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\14 3'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\14 4-20",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\14 4-20'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\15 1",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\15 1'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\15 2",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\15 2'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\15 3",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\15 3'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\15 4-6",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\15 4-6'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\15 7-20",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\15 7-20'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\6 1",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\6 1'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\6 2",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\6 2'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\6 3",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\6 3'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\6 4-8",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\6 4-8'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\6 9-20",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\6 9-20'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\7 1",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\7 1'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\7 2",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\7 2'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\7 3",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\7 3'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\7 4-8",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\7 4-8'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\7 9-20",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\7 9-20'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\8 10-20",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\8 10-20'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\8 1",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\8 1'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\8 2",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\8 2'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\8 3",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\8 3'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\8 4",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\8 4'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\8 5-9",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\8 5-9'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\9 1",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\9 1'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\9 2",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\9 2'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\9 3",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\9 3'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C11SH - pur\\05242012 (Windsor)\\9 4-20",
+    "error": "[Errno 2] No such file or directory: 'C:\\\\Users\\\\sdehgha2\\\\OneDrive - North Carolina State University\\\\Desktop\\\\PhD code\\\\large area tunneling j\\\\LAMoTuJ\\\\datasets\\\\raw\\\\Boston, Massachusetts\\\\Au\\\\C11SH - pur\\\\05242012 (Windsor)\\\\9 4-20'"
+  },
+  {
+    "file": "C:\\Users\\sdehgha2\\OneDrive - North Carolina State University\\Desktop\\PhD code\\large area tunneling j\\LAMoTuJ\\datasets\\raw\\Boston, Massachusetts\\Au\\C9SH - pur\\12202011\\11_data.txt",
+    "error": "Spot ID is not a valid integer"
+  }
+]
