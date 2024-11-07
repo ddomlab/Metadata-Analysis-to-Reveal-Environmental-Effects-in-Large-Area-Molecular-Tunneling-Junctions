@@ -19,9 +19,6 @@ rmse_scorer = make_scorer(root_mean_squared_error, greater_is_better=False)
 mae_scorer = make_scorer(mean_absolute_error, greater_is_better=False)
 
 
-def preocess_scores():
-    pass
-
 
 def cross_validate_regressor(
     regressor, X, y, cv

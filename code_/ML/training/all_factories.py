@@ -19,7 +19,7 @@ from typing import Callable, Optional, Union, Dict
 
 
 
-transforms: dict[str, Callable] = {
+transformers: dict[str, Callable] = {
     None:                None,
     "MinMax":            MinMaxScaler(),
     "Standard":          StandardScaler(),
