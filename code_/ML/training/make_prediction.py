@@ -55,11 +55,11 @@ def main_train(
 
 
 
-if __name__ == "main":
+if __name__ == '__main__':
     
     
-    feat_list:list[str] = ['substrate ID', 'location_Encoded','electrode_Encoded',
-                            'carbon number','temperature', ,'water content',
+    feat_list:list[str] = ['location_Encoded','electrode_Encoded',
+                            'carbon number','temperature','water content',
                             'hr_in_day_sin', 'hr_in_day_cos', 'day_in_week_sin',
                             'day_in_week_cos','day_in_year_sin', 'day_in_year_cos']
     

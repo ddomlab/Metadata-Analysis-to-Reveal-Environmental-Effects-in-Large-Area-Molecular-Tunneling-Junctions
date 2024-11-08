@@ -72,12 +72,13 @@ def process_results(
             np.std([seed[score] for seed in scores.values()]) for score in score_types
         ]
 
+        print(scores)
 
         score_types: list[str] = [score.replace("test_", "") for score in score_types]
         for score, avg, stdev in zip(score_types, avgs, stdevs ):
             scores[f"{score}_avg"] = abs(avg) if score in ["rmse", "mae"] else avg
             scores[f"{score}_stdev"] = stdev
-        
+        print(df_shape)
         score.update(df_shape)
         return scores
 

@@ -58,6 +58,7 @@ def train_regressor(
                                                     transform_type=transform_type,
                                                     hyperparameter_optimization=hyperparameter_optimization,
                                                     )
+    
         scores = process_results(scores, data_shape)
   
         return scores, predictions
@@ -87,7 +88,7 @@ def _prepare_data(
 
     # Pipline workflow here and preprocessor
     preprocessor: Pipeline = get_scale(feats=features,
-                                       scaler=transform_type)
+                                       scaler_type=transform_type)
     preprocessor.set_output(transform="pandas")
     
     score,predication = run(X,
@@ -144,8 +145,6 @@ def run(
             )
             scores["best_params"] = regressor_params
 
-      elif regressor_type == "ANN":
-            pass
 
       else:
             scores, predictions = cross_validate_regressor(regressor, X, y, cv_outer)
