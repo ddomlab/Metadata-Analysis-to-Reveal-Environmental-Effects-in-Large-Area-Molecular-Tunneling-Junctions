@@ -67,11 +67,12 @@ def _save(scores:dict,
     fname_root = f"({feats})"
     fname_root = f"{transform_type}_{transform_type}"
     fname_root = f"{fname_root}_hypOFF" if hypop_status==False else fname_root
-    
+    fname_root = f"{fname_root}_generalizability" if generalizability else fname_root
+
     print("Filename saved as:", fname_root)
 
     if scores:
-        scores_file: Path = results_dir / f"{fname_root}_scores.json"
+        scores_file: Path = results_dir / f"{fname_root}_generalizability_scores.json" if generalizability else f"{fname_root}_scores.json"
         with open(scores_file, "w") as f:
             json.dump(scores, f, cls=NumpyArrayEncoder, indent=2)
         print("Done with saving scores")
@@ -81,11 +82,7 @@ def _save(scores:dict,
         predictions.to_csv(predictions_file, index=False)
         print("Done with saving predicted values")
 
-    if generalizability:
-        generalizibility_scores_file: Path = results_dir / f"{fname_root}_generalizability_validation.json"
-        with open(generalizibility_scores_file, "w") as f:
-            json.dump(generalizability, f, cls=NumpyArrayEncoder, indent=2)
-        print('Done with saving learning scores!')
+
 
 
 

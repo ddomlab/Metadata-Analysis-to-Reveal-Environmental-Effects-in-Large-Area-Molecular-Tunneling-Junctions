@@ -14,12 +14,13 @@ from all_factories import (regressor_factory,
                            regressor_search_space,
                            transformers)
 
-from process_data import (get_scale, 
+from process_data_scoring import (get_scale, 
                           get_data,
                           process_results)
 
 from split import (
     cross_validate_regressor,
+    get_incremental_split
 )
 
 
@@ -44,9 +45,9 @@ def train_regressor(
     features:list,
     target: str,
     transform_type: str,
+    generalizability,
     hyperparameter_optimization: bool=True,
-    Test:bool=False
-    # cutoff:Dict[str, Tuple[Optional[float], Optional[float]]]=None,
+    Test:bool=False,
     ) -> None:
         
         set_globals(Test)
@@ -57,9 +58,10 @@ def train_regressor(
                                                     target=target,
                                                     transform_type=transform_type,
                                                     hyperparameter_optimization=hyperparameter_optimization,
+                                                    generalizability=generalizability
                                                     )
     
-        scores = process_results(scores, data_shape)
+        scores = process_results(scores, data_shape, generalizability)
   
         return scores, predictions
         
@@ -73,6 +75,7 @@ def _prepare_data(
     regressor_type: str,
     transform_type: str,
     hyperparameter_optimization: bool,
+    generalizability,
     **kwargs,
     ) -> tuple[dict[int, dict[str, float]], pd.DataFrame]:
 
@@ -97,6 +100,7 @@ def _prepare_data(
                             regressor_type=regressor_type,
                             transform_type=transform_type,
                             hyperparameter_optimization=hyperparameter_optimization,
+                            generalizability=generalizability,
                             **kwargs,)
     return score, predication, data_shape
 
@@ -106,6 +110,7 @@ def run(
     preprocessor: Union[ColumnTransformer, Pipeline],
     regressor_type: str,
     transform_type: str,
+    generalizability:bool,
     hyperparameter_optimization: bool = True,  
     **kwargs,
     ) -> tuple[dict[int, dict[str, float]], pd.DataFrame]:
@@ -144,14 +149,36 @@ def run(
                 best_estimator, X, y, cv_outer
             )
             scores["best_params"] = regressor_params
+            if generalizability:
+                train_sizes, train_scores, test_scores = get_incremental_split(best_estimator,
+                                                                                X,
+                                                                                y,
+                                                                                cv_outer,
+                                                                                steps=0.2,
+                                                                                random_state=seed)
 
 
       else:
             scores, predictions = cross_validate_regressor(regressor, X, y, cv_outer)
-            
+            if generalizability:
+                train_sizes, train_scores, test_scores = get_incremental_split(best_estimator,
+                                                                                X,
+                                                                                y,
+                                                                                cv_outer,
+                                                                                steps=0.2,
+                                                                                random_state=seed)
+
       seed_scores[seed] = scores
       seed_predictions[seed] = predictions.flatten()
-
+      # saving generalizability scores
+      if generalizability:
+            seed_scores[seed]["generalizability_scores"] = {
+                    "train_sizes": train_sizes,   # 1D array of training sizes used
+                    "train_sizes_fraction": train_sizes/len(X),
+                    "train_scores": train_scores,  # 2D array of training scores
+                    "test_scores": test_scores,  # 2D array of validation (cross-validation) scores
+                    "best_params": regressor_params if hyperparameter_optimization else "Default"
+                }
 
     seed_predictions: pd.DataFrame = pd.DataFrame.from_dict(
                       seed_predictions, orient="columns")
@@ -189,7 +216,6 @@ def _optimize_hyperparams(
         )
         bayes.fit(X_train, y_train)
 
-        print(f"\n\nBest parameters: {bayes.best_params_}\n\n")
         estimators.append(bayes)
 
     # Extract the best estimator from hyperparameter optimization

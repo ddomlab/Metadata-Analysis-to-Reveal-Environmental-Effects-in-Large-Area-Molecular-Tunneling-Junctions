@@ -30,7 +30,7 @@ def main_train(
         test:bool,
 )-> None:
 
-    scores, learning_score, predictions  = train_regressor(
+    scores, predictions  = train_regressor(
                                             dataset=dataset,
                                             regressor_type=regressor_type,
                                             features=features,
@@ -49,7 +49,7 @@ def main_train(
                 regressor_type=regressor_type,
                 hypop_status=hyperparameter_optimization,
                 transform_type=transform_type,
-                generalizability=learning_score,
+                generalizability=generalizability,
                 TEST=test,
                 )
     
