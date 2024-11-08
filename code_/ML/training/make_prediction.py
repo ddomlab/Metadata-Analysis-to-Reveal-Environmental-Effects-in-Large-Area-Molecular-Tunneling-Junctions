@@ -12,6 +12,12 @@ HERE: Path = Path(__file__).resolve().parent
 
 DATASETS: Path = HERE.parent.parent.parent / "datasets"
 training_data_dir: Path = DATASETS/"training_dataset"
+DATA: pd.DataFrame = pd.read_csv(training_data_dir/ "substrate_training_data.csv")
+
+
+
+
+
 
 def main_train(
         dataset:pd.DataFrame,
@@ -50,4 +56,22 @@ def main_train(
 
 
 if __name__ == "main":
-    pass
+    
+    
+    feat_list:list[str] = ['substrate ID', 'location_Encoded','electrode_Encoded',
+                            'carbon number','temperature', ,'water content',
+                            'hr_in_day_sin', 'hr_in_day_cos', 'day_in_week_sin',
+                            'day_in_week_cos','day_in_year_sin', 'day_in_year_cos']
+    
+    target:str = "mean log(|J|) @ |0.5| V"
+
+    
+    main_train(
+        dataset=DATA,
+        regressor_type="MLR",
+        features=feat_list,
+        target=target,
+        transform_type="Standard",
+        hyperparameter_optimization=True,
+        test=True
+        )
