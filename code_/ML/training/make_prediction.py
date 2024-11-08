@@ -22,22 +22,24 @@ DATA: pd.DataFrame = pd.read_csv(training_data_dir/ "substrate_training_data.csv
 def main_train(
         dataset:pd.DataFrame,
         regressor_type:str,
-        features=list[str],
-        target=str,
-        transform_type=str,
-        hyperparameter_optimization=bool,
-        test=bool,
+        features:list[str],
+        target:str,
+        transform_type:str,
+        hyperparameter_optimization:bool,
+        generalizability:bool,
+        test:bool,
 )-> None:
 
-    scores, predictions = train_regressor(
-                                        dataset=dataset,
-                                        regressor_type=regressor_type,
-                                        features=features,
-                                        target=target,
-                                        transform_type=transform_type,
-                                        hyperparameter_optimization=hyperparameter_optimization,
-                                        Test=test,
-                                        )
+    scores, learning_score, predictions  = train_regressor(
+                                            dataset=dataset,
+                                            regressor_type=regressor_type,
+                                            features=features,
+                                            target=target,
+                                            transform_type=transform_type,
+                                            hyperparameter_optimization=hyperparameter_optimization,
+                                            generalizability=generalizability,
+                                            Test=test,
+                                            )
 
 
     save_result(scores,
@@ -47,6 +49,7 @@ def main_train(
                 regressor_type=regressor_type,
                 hypop_status=hyperparameter_optimization,
                 transform_type=transform_type,
+                generalizability=learning_score,
                 TEST=test,
                 )
     
@@ -73,5 +76,6 @@ if __name__ == '__main__':
         target=target,
         transform_type="Standard",
         hyperparameter_optimization=True,
+        generalizability=True,
         test=True
         )

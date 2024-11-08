@@ -1,0 +1,51 @@
+{
+  "42": {
+    "fit_time": [
+      0.03342771530151367,
+      0.016715288162231445
+    ],
+    "score_time": [
+      0.0,
+      0.0
+    ],
+    "test_r2": [
+      0.6290158405518742,
+      0.6270159969075901
+    ],
+    "test_rmse": [
+      -0.8683124574567057,
+      -0.7714653488882001
+    ],
+    "test_mae": [
+      -0.6566432325298961,
+      -0.6008211768237021
+    ],
+    "best_params": {
+      "check_inverse": true,
+      "func": null,
+      "inverse_func": null,
+      "regressor__copy_X": true,
+      "regressor__fit_intercept": true,
+      "regressor__n_jobs": null,
+      "regressor__positive": false,
+      "transformer__memory": null,
+      "transformer__verbose": false,
+      "transformer__y scaler__copy": true,
+      "transformer__y scaler__with_mean": true,
+      "transformer__y scaler__with_std": true
+    }
+  },
+  "r2_avg": 0.6280159187297322,
+  "r2_stdev": 0.0009999218221420358,
+  "rmse_avg": 0.8198889031724529,
+  "rmse_stdev": 0.04842355428425282,
+  "mae_avg": 0.6287322046767991,
+  "mae_stdev": 0.027911027853097015,
+  "targets_shape": [
+    93
+  ],
+  "training_features_shape": [
+    93,
+    11
+  ]
+}

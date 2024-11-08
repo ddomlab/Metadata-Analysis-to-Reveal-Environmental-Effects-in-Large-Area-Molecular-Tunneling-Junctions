@@ -13,16 +13,17 @@ ROOT: Path = HERE.parent.parent.parent
 
 feature_abbrev: Dict[str, str] = {
     #TODO: edit this
-    "Lp (nm)":          "Lp",
-    # "Rg1 (nm)":         "Rg",
-    # "Voc (V)":            "Voc",
-    # "Jsc (mA cm^-2)":            "Jsc",
-    # "FF (%)":             "FF",
-    # "Concentration (mg/ml)":            "concentration",
-    # "Temperature SANS/SLS/DLS/SEC (K)":         "temperature",
-    # "Mn (g/mol)":         "Mn", 
-    # "Mw (g/mol)":         "Mw", 
-
+    "mean log(|J|) @ |0.5| V":          "log(J)at abs(.5)V",
+    "mean log(|J|) @ +0.5 V":           "log(J)at +.5V",
+    "mean log(|J|) @ -0.5 V":           "log(J)at -.5V",
+    "location_Encoded":                 "location",
+    "electrode_Encoded":                "electrode",
+    "day_in_week_sin":                  "Sin(day in week)",
+    "day_in_week_cos":                  "Cos(day in week)",
+    "day_in_year_sin":                  "Sin(day in year)",
+    "day_in_year_cos":                  "Cos(day in year)",
+    "hr_in_day_sin":                    "Sin(hour in day)",
+    "hr_in_day_cos":                    "Cos(hour in day)",
 }
 
 def remove_unserializable_keys(d: Dict) -> Dict:
@@ -59,6 +60,7 @@ def _save(scores:dict,
         features:list[str],
         hypop_status:bool,
         transform_type:str,
+        generalizability,
         )-> None:
     results_dir.mkdir(parents=True, exist_ok=True)
     feats = "-".join(feature_abbrev.get(key,key) for key in features)
@@ -72,25 +74,30 @@ def _save(scores:dict,
         scores_file: Path = results_dir / f"{fname_root}_scores.json"
         with open(scores_file, "w") as f:
             json.dump(scores, f, cls=NumpyArrayEncoder, indent=2)
-        print(scores_file)
+        print("Done with saving scores")
 
     if predictions is not None and not predictions.empty:
         predictions_file: Path = results_dir / f"{fname_root}_predictions.csv"
         predictions.to_csv(predictions_file, index=False)
-        print(predictions_file)
+        print("Done with saving predicted values")
 
-    print('Done Saving scores and prediction!')
+    if generalizability:
+        generalizibility_scores_file: Path = results_dir / f"{fname_root}_generalizability_validation.json"
+        with open(generalizibility_scores_file, "w") as f:
+            json.dump(generalizability, f, cls=NumpyArrayEncoder, indent=2)
+        print('Done with saving learning scores!')
 
 
 
 def save_result(scores:dict,
-                predictions=pd.DataFrame,
-                target_feature=str,
-                features=list[str],
-                regressor_type=str,
-                hypop_status=bool,
-                transform_type=str,
-                TEST=bool,
+                predictions:pd.DataFrame,
+                target_feature:str,
+                features:list[str],
+                regressor_type:str,
+                hypop_status:bool,
+                transform_type:str,
+                generalizability,
+                TEST:bool,
                 ) -> None:
     
     targets_dir = feature_abbrev[target_feature]
@@ -100,6 +107,7 @@ def save_result(scores:dict,
     f_root_dir = f"target_{targets_dir}"
     results_dir: Path = ROOT / "results" / f_root_dir
     results_dir: Path = results_dir / "test" if TEST else results_dir
+
     results_dir: Path = results_dir/ regressor_type
 
     _save(
@@ -109,4 +117,5 @@ def save_result(scores:dict,
         features,
         hypop_status,
         transform_type,
+        generalizability
     )
