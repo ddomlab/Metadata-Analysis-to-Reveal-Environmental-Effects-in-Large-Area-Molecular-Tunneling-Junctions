@@ -28,6 +28,8 @@ def main_train(
         hyperparameter_optimization:bool,
         generalizability:bool,
         test:bool,
+        feat_importance:bool,
+
 )-> None:
 
     scores, predictions  = train_regressor(
@@ -39,19 +41,23 @@ def main_train(
                                             hyperparameter_optimization=hyperparameter_optimization,
                                             generalizability=generalizability,
                                             Test=test,
+                                            feat_importance=feat_importance
                                             )
 
 
-    save_result(scores,
-                predictions=predictions,
-                target_feature=target,
-                features=features,
-                regressor_type=regressor_type,
-                hypop_status=hyperparameter_optimization,
-                transform_type=transform_type,
-                generalizability=generalizability,
-                TEST=test,
-                )
+
+    
+    # print(scores)
+    # save_result(scores,
+    #             predictions=predictions,
+    #             target_feature=target,
+    #             features=features,
+    #             regressor_type=regressor_type,
+    #             hypop_status=hyperparameter_optimization,
+    #             transform_type=transform_type,
+    #             generalizability=generalizability,
+    #             TEST=test,
+    #             )
     
 
 
@@ -71,11 +77,12 @@ if __name__ == '__main__':
     
     main_train(
         dataset=DATA,
-        regressor_type="MLR",
+        regressor_type="Ridge",
         features=feat_list,
         target=target,
         transform_type="Standard",
-        hyperparameter_optimization=True,
-        generalizability=True,
-        test=True
-        )
+        hyperparameter_optimization=False,
+        generalizability=False,
+        test=True,
+        feat_importance=True
+        )       

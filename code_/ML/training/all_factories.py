@@ -57,7 +57,7 @@ regressor_search_space = {
 
     "KRR": {
         "regressor__regressor__alpha": Real(1e-3, 1e3, prior="log-uniform"),
-        "regressor__regressor__kernel": ["RBF"],
+        "regressor__regressor__kernel": ["RBF","polynomial"],
     },
 
     "KNN": {
@@ -68,7 +68,7 @@ regressor_search_space = {
     },
 
     "RF": {
-        "regressor__regressor__n_estimators": Integer(50, 2000, prior="log-uniform"),
+        "regressor__regressor__n_estimators": Integer(10, 2000, prior="log-uniform"),
         "regressor__regressor__max_depth": [None],
         "regressor__regressor__min_samples_split": Real(0.05, 0.99),
         "regressor__regressor__min_samples_leaf": Real(0.05, 0.99),

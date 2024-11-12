@@ -20,12 +20,16 @@ from process_data_scoring import (get_scale,
 
 from split import (
     cross_validate_regressor,
-    get_incremental_split
+    get_incremental_split,
+    get_feature_importance,
+    get_generalizability_score
 )
 
 
 
 HERE: Path = Path(__file__).resolve().parent
+
+
 
 def set_globals(Test: bool=False) -> None:
     global SEEDS, N_FOLDS, BO_ITER
@@ -34,7 +38,7 @@ def set_globals(Test: bool=False) -> None:
         N_FOLDS = 5
         BO_ITER = 42
     else:
-        SEEDS = [42]
+        SEEDS = [42,13]
         N_FOLDS = 2
         BO_ITER = 1
 
@@ -46,6 +50,7 @@ def train_regressor(
     target: str,
     transform_type: str,
     generalizability,
+    feat_importance,
     hyperparameter_optimization: bool=True,
     Test:bool=False,
     ) -> None:
@@ -58,7 +63,8 @@ def train_regressor(
                                                     target=target,
                                                     transform_type=transform_type,
                                                     hyperparameter_optimization=hyperparameter_optimization,
-                                                    generalizability=generalizability
+                                                    generalizability=generalizability,
+                                                    feat_importance=feat_importance
                                                     )
     
         scores = process_results(scores, data_shape, generalizability)
@@ -76,6 +82,7 @@ def _prepare_data(
     transform_type: str,
     hyperparameter_optimization: bool,
     generalizability,
+    feat_importance,
     **kwargs,
     ) -> tuple[dict[int, dict[str, float]], pd.DataFrame]:
 
@@ -101,7 +108,8 @@ def _prepare_data(
                             transform_type=transform_type,
                             hyperparameter_optimization=hyperparameter_optimization,
                             generalizability=generalizability,
-                            **kwargs,)
+                            feat_importance=feat_importance,
+                            )
     return score, predication, data_shape
 
 def run(
@@ -110,14 +118,14 @@ def run(
     preprocessor: Union[ColumnTransformer, Pipeline],
     regressor_type: str,
     transform_type: str,
-    generalizability:bool,
-    hyperparameter_optimization: bool = True,  
-    **kwargs,
+    generalizability:bool=False,
+    hyperparameter_optimization: bool = True,
+    feat_importance:bool=False,
     ) -> tuple[dict[int, dict[str, float]], pd.DataFrame]:
 
     seed_scores: dict[int, dict[str, float]] = {}
     seed_predictions: dict[int, np.ndarray] = {}
-
+    feature_importances:list = []
     for seed in SEEDS:
       cv_outer = KFold(n_splits=N_FOLDS, shuffle=True, random_state=seed)
       y_transform = Pipeline(
@@ -137,7 +145,7 @@ def run(
       # set_output on dataframe
       regressor.set_output(transform="pandas")
       if hyperparameter_optimization:
-            best_estimator, regressor_params = _optimize_hyperparams(
+            regressor, regressor_params = _optimize_hyperparams(
                 X,
                 y,
                 cv_outer=cv_outer,
@@ -146,42 +154,43 @@ def run(
                 regressor=regressor,
             )
             scores, predictions = cross_validate_regressor(
-                best_estimator, X, y, cv_outer
+                regressor, X, y, cv_outer
             )
             scores["best_params"] = regressor_params
-            if generalizability:
-                train_sizes, train_scores, test_scores = get_incremental_split(best_estimator,
-                                                                                X,
-                                                                                y,
-                                                                                cv_outer,
-                                                                                steps=0.2,
-                                                                                random_state=seed)
+              
 
 
       else:
             scores, predictions = cross_validate_regressor(regressor, X, y, cv_outer)
-            if generalizability:
-                train_sizes, train_scores, test_scores = get_incremental_split(best_estimator,
+           
+                
+      if generalizability:
+          train_sizes, train_scores, test_scores = get_incremental_split(regressor,
                                                                                 X,
                                                                                 y,
                                                                                 cv_outer,
                                                                                 steps=0.2,
                                                                                 random_state=seed)
-
+          seed_scores = get_generalizability_score(X,
+                                                     seed_scores,
+                                                     seed,
+                                                     train_sizes,
+                                                     train_scores,
+                                                     test_scores,
+                                                     regressor_params,
+                                                     hyperparameter_optimization)
+          
+      if feat_importance:    
+            importance = get_feature_importance(X,scores,seed)
       seed_scores[seed] = scores
       seed_predictions[seed] = predictions.flatten()
+      feature_importances.append(importance)
       # saving generalizability scores
-      if generalizability:
-            seed_scores[seed]["generalizability_scores"] = {
-                    "train_sizes": train_sizes,   # 1D array of training sizes used
-                    "train_sizes_fraction": train_sizes/len(X),
-                    "train_scores": train_scores,  # 2D array of training scores
-                    "test_scores": test_scores,  # 2D array of validation (cross-validation) scores
-                    "best_params": regressor_params if hyperparameter_optimization else "Default"
-                }
 
     seed_predictions: pd.DataFrame = pd.DataFrame.from_dict(
                       seed_predictions, orient="columns")
+    seed_importance = pd.concat(feature_importances, axis=0, ignore_index=True)
+    print(seed_importance)
 
     return seed_scores, seed_predictions
 

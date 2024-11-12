@@ -35,7 +35,7 @@ def cross_validate_regressor(
                 "rmse": rmse_scorer,
                 "mae": mae_scorer,
             },
-            # return_estimator=True,
+            return_estimator=True,
             n_jobs=-1,
         )
 
@@ -69,3 +69,49 @@ def get_incremental_split(
 
  
     return training_sizes, training_scores, testing_scores
+
+
+
+
+def get_feature_importance(data:pd.DataFrame,
+                            score:dict,
+                            seed:int,
+                            )->pd.DataFrame:
+    # .feature_importances_
+    if hasattr(score['estimator'][-1].named_steps['regressor'].regressor_, 'coef_'): 
+        importance = pd.DataFrame([
+                estimator.named_steps['regressor'].regressor_.coef_ 
+                for estimator in score['estimator']
+                ],
+                columns=data.columns.to_list()
+                )
+    elif hasattr(score['estimator'][-1].named_steps['regressor'].regressor_, 'feature_importances_'):
+        importance = pd.DataFrame([
+                estimator.named_steps['regressor'].regressor_.feature_importances_ 
+                for estimator in score['estimator']
+                ],
+                columns=data.columns.to_list()
+                )
+    
+    else:
+        raise ValueError(f"Model {score['estimator'][-1].named_steps['regressor'].regressor_} does not support feature importance extraction.")
+    importance['seed'] = seed
+    return importance
+
+
+def get_generalizability_score(X:pd.DataFrame,
+                               score:dict,
+                               seed:int,
+                               train_sizes,
+                               train_scores,
+                               test_scores,
+                               regressor_params,
+                               hyperparameter_optimization,
+)->dict:
+                 score[seed]["generalizability_scores"] = {
+                    "train_sizes": train_sizes,   # 1D array of training sizes used
+                    "train_sizes_fraction": train_sizes/len(X),
+                    "train_scores": train_scores,  # 2D array of training scores
+                    "test_scores": test_scores,  # 2D array of validation (cross-validation) scores
+                    "best_params": regressor_params if hyperparameter_optimization else "Default"
+                }

@@ -64,14 +64,13 @@ def _save(scores:dict,
         )-> None:
     results_dir.mkdir(parents=True, exist_ok=True)
     feats = "-".join(feature_abbrev.get(key,key) for key in features)
-    fname_root = f"({feats})"
-    fname_root = f"{transform_type}_{transform_type}"
+    fname_root = f"({feats})_{transform_type}"
     fname_root = f"{fname_root}_hypOFF" if hypop_status==False else fname_root
-    fname_root = f"{fname_root}_generalizability" if generalizability else fname_root
 
     print("Filename saved as:", fname_root)
 
     if scores:
+        print(scores)
         scores_file: Path = results_dir / f"{fname_root}_generalizability_scores.json" if generalizability else f"{fname_root}_scores.json"
         with open(scores_file, "w") as f:
             json.dump(scores, f, cls=NumpyArrayEncoder, indent=2)
