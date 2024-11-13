@@ -12,7 +12,8 @@ from skopt import BayesSearchCV
 from save_results import remove_unserializable_keys
 from all_factories import (regressor_factory,
                            regressor_search_space,
-                           transformers)
+                           transformers,
+                           unroll_features)
 
 from process_data_scoring import (get_scale, 
                           get_data,
@@ -56,7 +57,7 @@ def train_regressor(
     ) -> None:
         
         set_globals(Test)
-        scores, predictions, data_shape = _prepare_data(
+        scores, predictions, data_shape,feature_importance = _prepare_data(
                                                     dataset=dataset,
                                                     regressor_type=regressor_type,
                                                     features=features,
@@ -69,7 +70,7 @@ def train_regressor(
     
         scores = process_results(scores, data_shape, generalizability)
   
-        return scores, predictions
+        return scores, predictions, feature_importance
         
 
 
@@ -89,28 +90,29 @@ def _prepare_data(
     """
     here you should change the names
     """
-
+    unrolled_features:list = unroll_features(features)
     X, y, data_shape = get_data(
                                 raw_dataset=dataset,
-                                feats=features,
+                                feats=unrolled_features,
                                 target=target,
                                 )
 
     # Pipline workflow here and preprocessor
-    preprocessor: Pipeline = get_scale(feats=features,
+    preprocessor: Pipeline = get_scale(feats=unrolled_features,
                                        scaler_type=transform_type)
+    
     preprocessor.set_output(transform="pandas")
     
-    score,predication = run(X,
-                            y,
-                            preprocessor=preprocessor,
-                            regressor_type=regressor_type,
-                            transform_type=transform_type,
-                            hyperparameter_optimization=hyperparameter_optimization,
-                            generalizability=generalizability,
-                            feat_importance=feat_importance,
-                            )
-    return score, predication, data_shape
+    score,predication,feature_importance = run(X,
+                                                y,
+                                                preprocessor=preprocessor,
+                                                regressor_type=regressor_type,
+                                                transform_type=transform_type,
+                                                hyperparameter_optimization=hyperparameter_optimization,
+                                                generalizability=generalizability,
+                                                feat_importance=feat_importance,
+                                                )
+    return score, predication, data_shape, feature_importance
 
 def run(
     X,
@@ -171,28 +173,29 @@ def run(
                                                                                 cv_outer,
                                                                                 steps=0.2,
                                                                                 random_state=seed)
-          seed_scores = get_generalizability_score(X,
-                                                     seed_scores,
-                                                     seed,
-                                                     train_sizes,
-                                                     train_scores,
-                                                     test_scores,
-                                                     regressor_params,
-                                                     hyperparameter_optimization)
+          scores = get_generalizability_score(X,
+                                                scores,
+                                                train_sizes,
+                                                train_scores,
+                                                test_scores,
+                                                )
           
       if feat_importance:    
-            importance = get_feature_importance(X,scores,seed)
+            importance = get_feature_importance(X, scores, seed)
+            feature_importances.append(importance)
+
+      scores.pop('estimator', None)
       seed_scores[seed] = scores
       seed_predictions[seed] = predictions.flatten()
-      feature_importances.append(importance)
       # saving generalizability scores
 
     seed_predictions: pd.DataFrame = pd.DataFrame.from_dict(
                       seed_predictions, orient="columns")
-    seed_importance = pd.concat(feature_importances, axis=0, ignore_index=True)
-    print(seed_importance)
-
-    return seed_scores, seed_predictions
+    if feat_importance:
+        seed_importance = pd.concat(feature_importances, axis=0, ignore_index=True)
+    else:
+        seed_importance =None
+    return seed_scores, seed_predictions,seed_importance
 
 
 def _optimize_hyperparams(

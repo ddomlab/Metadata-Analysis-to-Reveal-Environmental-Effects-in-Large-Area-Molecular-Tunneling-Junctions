@@ -12,18 +12,17 @@ ROOT: Path = HERE.parent.parent.parent
 
 
 feature_abbrev: Dict[str, str] = {
-    #TODO: edit this
-    "mean log(|J|) @ |0.5| V":          "log(J)at abs(.5)V",
-    "mean log(|J|) @ +0.5 V":           "log(J)at +.5V",
-    "mean log(|J|) @ -0.5 V":           "log(J)at -.5V",
-    "location_Encoded":                 "location",
-    "electrode_Encoded":                "electrode",
-    "day_in_week_sin":                  "Sin(day in week)",
-    "day_in_week_cos":                  "Cos(day in week)",
-    "day_in_year_sin":                  "Sin(day in year)",
-    "day_in_year_cos":                  "Cos(day in year)",
-    "hr_in_day_sin":                    "Sin(hour in day)",
-    "hr_in_day_cos":                    "Cos(hour in day)",
+    "mean log(|J|) @ |0.5| V":          "log(J)at abs(.5) V",
+    "mean log(|J|) @ +0.5 V":           "log(J)at +.5 V",
+    "mean log(|J|) @ -0.5 V":           "log(J)at -.5 V",
+    # "location_Encoded":                 "location",
+    # "electrode_Encoded":                "electrode",
+    # "day_in_week_sin":                  "Sin(day in week)",
+    # "day_in_week_cos":                  "Cos(day in week)",
+    # "day_in_year_sin":                  "Sin(day in year)",
+    # "day_in_year_cos":                  "Cos(day in year)",
+    # "hr_in_day_sin":                    "Sin(hour in day)",
+    # "hr_in_day_cos":                    "Cos(hour in day)",
 }
 
 def remove_unserializable_keys(d: Dict) -> Dict:
@@ -61,17 +60,19 @@ def _save(scores:dict,
         hypop_status:bool,
         transform_type:str,
         generalizability,
+        importance_score,
         )-> None:
     results_dir.mkdir(parents=True, exist_ok=True)
     feats = "-".join(feature_abbrev.get(key,key) for key in features)
     fname_root = f"({feats})_{transform_type}"
     fname_root = f"{fname_root}_hypOFF" if hypop_status==False else fname_root
+    fname_root = f"{fname_root}_generalizability" if generalizability else fname_root
 
     print("Filename saved as:", fname_root)
-
+    print(ROOT)
     if scores:
         print(scores)
-        scores_file: Path = results_dir / f"{fname_root}_generalizability_scores.json" if generalizability else f"{fname_root}_scores.json"
+        scores_file: Path = results_dir/ f"{fname_root}_scores.json"
         with open(scores_file, "w") as f:
             json.dump(scores, f, cls=NumpyArrayEncoder, indent=2)
         print("Done with saving scores")
@@ -82,7 +83,10 @@ def _save(scores:dict,
         print("Done with saving predicted values")
 
 
-
+    if importance_score is not None and not importance_score.empty:
+        importance_file: Path = results_dir / f"{fname_root}_importance.csv"
+        importance_score.to_csv(importance_file, index=False)
+        print("Done with saving importance scores")
 
 
 def save_result(scores:dict,
@@ -93,6 +97,7 @@ def save_result(scores:dict,
                 hypop_status:bool,
                 transform_type:str,
                 generalizability,
+                importance_score,
                 TEST:bool,
                 ) -> None:
     
@@ -100,7 +105,7 @@ def save_result(scores:dict,
 
 
 
-    f_root_dir = f"target_{targets_dir}"
+    f_root_dir = f"_{targets_dir}"
     results_dir: Path = ROOT / "results" / f_root_dir
     results_dir: Path = results_dir / "test" if TEST else results_dir
 
@@ -113,5 +118,6 @@ def save_result(scores:dict,
         features,
         hypop_status,
         transform_type,
-        generalizability
+        generalizability,
+        importance_score
     )

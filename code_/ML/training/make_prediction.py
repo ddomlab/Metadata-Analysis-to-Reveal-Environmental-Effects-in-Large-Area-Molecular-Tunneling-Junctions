@@ -31,8 +31,8 @@ def main_train(
         feat_importance:bool,
 
 )-> None:
-
-    scores, predictions  = train_regressor(
+    
+    scores, predictions, feature_importance  = train_regressor(
                                             dataset=dataset,
                                             regressor_type=regressor_type,
                                             features=features,
@@ -45,19 +45,17 @@ def main_train(
                                             )
 
 
-
-    
-    # print(scores)
-    # save_result(scores,
-    #             predictions=predictions,
-    #             target_feature=target,
-    #             features=features,
-    #             regressor_type=regressor_type,
-    #             hypop_status=hyperparameter_optimization,
-    #             transform_type=transform_type,
-    #             generalizability=generalizability,
-    #             TEST=test,
-    #             )
+    save_result(scores,
+                predictions=predictions,
+                importance_score= feature_importance,
+                target_feature=target,
+                features=features,
+                regressor_type=regressor_type,
+                hypop_status=hyperparameter_optimization,
+                transform_type=transform_type,
+                generalizability=generalizability,
+                TEST=test,
+                )
     
 
 
@@ -67,22 +65,23 @@ def main_train(
 if __name__ == '__main__':
     
     
-    feat_list:list[str] = ['location_Encoded','electrode_Encoded',
-                            'carbon number','temperature','water content',
-                            'hr_in_day_sin', 'hr_in_day_cos', 'day_in_week_sin',
-                            'day_in_week_cos','day_in_year_sin', 'day_in_year_cos']
+    feat_list:list[str] = ["material",
+                        #    "environmental",
+                            #  "time_related"
+                             ]
     
     target:str = "mean log(|J|) @ |0.5| V"
-
+    models = ['ElasticNet']
+    for model in models:
     
-    main_train(
-        dataset=DATA,
-        regressor_type="Ridge",
-        features=feat_list,
-        target=target,
-        transform_type="Standard",
-        hyperparameter_optimization=False,
-        generalizability=False,
-        test=True,
-        feat_importance=True
-        )       
+        main_train(
+            dataset=DATA,
+            regressor_type=model,
+            features=feat_list,
+            target=target,
+            transform_type="Standard",
+            hyperparameter_optimization=True,
+            generalizability=True,
+            test=False,
+            feat_importance=True
+            )       

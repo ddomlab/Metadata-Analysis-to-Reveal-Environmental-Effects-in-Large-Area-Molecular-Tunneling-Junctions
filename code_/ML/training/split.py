@@ -101,17 +101,17 @@ def get_feature_importance(data:pd.DataFrame,
 
 def get_generalizability_score(X:pd.DataFrame,
                                score:dict,
-                               seed:int,
                                train_sizes,
                                train_scores,
                                test_scores,
-                               regressor_params,
-                               hyperparameter_optimization,
+                            
 )->dict:
-                 score[seed]["generalizability_scores"] = {
-                    "train_sizes": train_sizes,   # 1D array of training sizes used
-                    "train_sizes_fraction": train_sizes/len(X),
-                    "train_scores": train_scores,  # 2D array of training scores
-                    "test_scores": test_scores,  # 2D array of validation (cross-validation) scores
-                    "best_params": regressor_params if hyperparameter_optimization else "Default"
+                score["generalizability_scores"] = {
+                "train_sizes": train_sizes,   # 1D array of training sizes used
+                "train_sizes_fraction": train_sizes/len(X),
+                "train_scores": train_scores,  # 2D array of training scores
+                "test_scores": test_scores,  # 2D array of validation (cross-validation) scores
                 }
+                 
+
+                return score
