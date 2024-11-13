@@ -66,8 +66,8 @@ if __name__ == '__main__':
     
     
     feat_list:list[str] = ["material",
-                        #    "environmental",
-                            #  "time_related"
+                           "environmental",
+                           "time_related"
                              ]
     
     target:str = "mean log(|J|) @ |0.5| V"

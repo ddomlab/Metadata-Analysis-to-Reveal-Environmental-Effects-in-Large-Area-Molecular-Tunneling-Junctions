@@ -66,8 +66,8 @@ def get_results_from_file(
 
 
 def get_result_dataframe(target_dir: Path,
-                         score: str,
-                         var: str,
+                        score: str,
+                        var: str,
 ) -> tuple[pd.DataFrame,pd.DataFrame]:
     
     avg_scores: pd.DataFrame = pd.DataFrame()
