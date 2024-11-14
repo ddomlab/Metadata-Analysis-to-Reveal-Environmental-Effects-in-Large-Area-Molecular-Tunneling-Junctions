@@ -166,8 +166,8 @@ def draw_feature_importance(target_dir:Path,
                             annotations=anott,
                             figsize=(18, 10),
                             fig_title=f"Average Importance of Features contributing to predicting {target}",
-                            x_title="Regression Models",
-                            y_title="Features",
+                            x_title="Features",
+                            y_title="Regression Models",
                             fname=f"Feature importance vs Models")
 
 if __name__ == '__main__':
