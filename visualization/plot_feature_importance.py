@@ -37,7 +37,7 @@ def get_importance_score(file_path: Path,
     return features, model, df_avg, df_std
 
 
-def get_importance_space(target_dir):
+def get_importance_space(target_dir, algorithm_list):
     avg_dataframes = []
     std_dataframes = []
     annotations: pd.DataFrame = pd.DataFrame()
@@ -52,9 +52,9 @@ def get_importance_space(target_dir):
                 if "material-environmental-time_related" in file_path.name:
                     features, model, avg_df , std_df = get_importance_score(file_path=file_path) 
                     # TODO: add the uniform feature below
-                
-                    avg_dataframes.append(avg_df)
-                    std_dataframes.append(std_df)
+                    if model in algorithm_list:
+                        avg_dataframes.append(avg_df)
+                        std_dataframes.append(std_df)
     
 
     overall_avg_importance = pd.concat(avg_dataframes, axis=0)
@@ -158,25 +158,33 @@ def creat_heatmap_importance(
 
 
 def draw_feature_importance(target_dir:Path,
-                            target:str,) -> None:
+                            target:str,
+                            algorithms:list[str]) -> None:
     
-    ave, anott = get_importance_space(target_dir=target_dir)
-    creat_heatmap_importance(root_dir=target_dir,
-                            avg_scores=ave,
-                            annotations=anott,
-                            figsize=(18, 10),
-                            fig_title=f"Average Importance of Features contributing to predicting {target}",
-                            x_title="Features",
-                            y_title="Regression Models",
-                            fname=f"Feature importance vs Models")
+
+    for format, algorithm_list in algorithms.items():
+        ave, anott = get_importance_space(target_dir=target_dir, algorithm_list=algorithm_list)
+        creat_heatmap_importance(root_dir=target_dir,
+                                avg_scores=ave,
+                                annotations=anott,
+                                figsize=(18, 10),
+                                fig_title=f"Average Importance of Features contributing to predicting {target}",
+                                x_title="Features",
+                                y_title="Regression Models",
+                                fname=f"Feature importance vs {format} Models ")
+    
+
+
+models_category:dict = {
+    'tree base': ['DT', 'RF'],
+    'linear':['MLR', 'Lasso', 'ElasticNet','Ridge'],
+}
 
 if __name__ == '__main__':
 
-
-    # print(RESULTS)
-    for target_folder in target_list:
-            draw_feature_importance(target_dir=RESULTS/target_folder,
-                                target=target_folder)
+        for target_folder in target_list:
+                draw_feature_importance(target_dir=RESULTS/target_folder,
+                                    target=target_folder,algorithms=models_category)
 
     
 

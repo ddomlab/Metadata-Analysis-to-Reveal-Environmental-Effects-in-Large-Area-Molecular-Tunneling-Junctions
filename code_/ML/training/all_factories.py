@@ -72,6 +72,7 @@ regressor_search_space = {
     },
     "ElasticNet": {
         "regressor__regressor__alpha": Real(1e-4, 1e3, prior="log-uniform"),
+        'regressor__regressor__l1_ratio': Real(0, 1) 
     },
 
     "KRR": {
