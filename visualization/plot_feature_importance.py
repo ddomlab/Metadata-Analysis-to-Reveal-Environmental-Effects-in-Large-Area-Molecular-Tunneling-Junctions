@@ -49,7 +49,7 @@ def get_importance_space(target_dir, algorithm_list):
             score_files: list[Path] = list(Path(model_path).rglob(pattern))
 
             for file_path in score_files:
-                if "material-environmental-time_related" in file_path.name:
+                if "material-environmental-linear_time_related" in file_path.name:
                     features, model, avg_df , std_df = get_importance_score(file_path=file_path) 
                     # TODO: add the uniform feature below
                     if model in algorithm_list:

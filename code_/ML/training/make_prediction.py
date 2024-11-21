@@ -29,6 +29,7 @@ def main_train(
         generalizability:bool,
         test:bool,
         feat_importance:bool,
+        single_features:Optional[str]=False,
 
 )-> None:
     
@@ -36,6 +37,7 @@ def main_train(
                                             dataset=dataset,
                                             regressor_type=regressor_type,
                                             features=features,
+                                            single_features=single_features,
                                             target=target,
                                             transform_type=transform_type,
                                             hyperparameter_optimization=hyperparameter_optimization,
@@ -59,19 +61,20 @@ def main_train(
     
 
 
-
+# all_model = ["MLR", "RF", "DT","Lasso", "Ridge","ElasticNet", "KRR","KNN",]
 
 
 if __name__ == '__main__':
     
     
-    feat_list:list[str] = ["material",
-                           "environmental",
-                           "time_related"
-                             ]
+    feat_list:list[str] = [
+                        #    "material",
+                           "environmental_log2(water content)",
+                        #    "linear_time_related"
+                           ]
     
     target:str = "mean log(|J|) @ |0.5| V"
-    models = ['ElasticNet']
+    models = ["MLR", "RF", "DT","Lasso", "Ridge","ElasticNet"]
     for model in models:
     
         main_train(

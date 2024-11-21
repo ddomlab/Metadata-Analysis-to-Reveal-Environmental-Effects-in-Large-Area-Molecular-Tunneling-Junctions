@@ -13,11 +13,13 @@ from save_results import remove_unserializable_keys
 from all_factories import (regressor_factory,
                            regressor_search_space,
                            transformers,
-                           unroll_features)
+                           )
 
-from process_data_scoring import (get_scale, 
-                          get_data,
-                          process_results)
+from process_scoring import (process_results)
+
+from filter_data import (unroll_features,
+                         get_data,
+                         get_scale)
 
 from split import (
     cross_validate_regressor,
@@ -53,6 +55,7 @@ def train_regressor(
     generalizability,
     feat_importance,
     hyperparameter_optimization: bool=True,
+    single_features: Optional[bool]=False,
     Test:bool=False,
     ) -> None:
         
@@ -61,11 +64,12 @@ def train_regressor(
                                                     dataset=dataset,
                                                     regressor_type=regressor_type,
                                                     features=features,
+                                                    single_features=single_features,
                                                     target=target,
                                                     transform_type=transform_type,
                                                     hyperparameter_optimization=hyperparameter_optimization,
                                                     generalizability=generalizability,
-                                                    feat_importance=feat_importance
+                                                    feat_importance=feat_importance,
                                                     )
     
         scores = process_results(scores, data_shape, generalizability)
@@ -84,13 +88,14 @@ def _prepare_data(
     hyperparameter_optimization: bool,
     generalizability,
     feat_importance,
+    single_features:Optional[bool]=False,
     **kwargs,
     ) -> tuple[dict[int, dict[str, float]], pd.DataFrame]:
 
     """
     here you should change the names
     """
-    unrolled_features:list = unroll_features(features)
+    unrolled_features:list = unroll_features(features,single_features=single_features)
     X, y, data_shape = get_data(
                                 raw_dataset=dataset,
                                 feats=unrolled_features,

@@ -23,16 +23,7 @@ from typing import Callable, Optional, Union, Dict
 
 
 
-unrolling_feature_factory: dict[str, list[str]] = {
-                                                "material":     ['electrode_Encoded', 'carbon number'],
-                                                "environmental":  ['location_Encoded','temperature','water content'],
-                                                "time_related":         ['hr_in_day_sin', 'hr_in_day_cos', 'day_in_week_sin',
-                                                                        'day_in_week_cos','day_in_year_sin', 'day_in_year_cos'],
-                                                 }
 
-def unroll_features(rolled_features:list[str])-> list:
-    unrolled_features =   [feats for features in rolled_features for feats in unrolling_feature_factory[features]]
-    return unrolled_features
 
 
 transformers: dict[str, Callable] = {
