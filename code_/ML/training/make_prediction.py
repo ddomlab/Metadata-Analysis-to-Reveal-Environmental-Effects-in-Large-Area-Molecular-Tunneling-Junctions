@@ -68,13 +68,13 @@ if __name__ == '__main__':
     
     
     feat_list:list[str] = [
-                        #    "material",
+                           "material",
                            "environmental_log2(water content)",
-                        #    "linear_time_related"
+                           "cyclic_time_related"
                            ]
     
     target:str = "mean log(|J|) @ |0.5| V"
-    models = ["MLR", "RF", "DT","Lasso", "Ridge","ElasticNet"]
+    models = ["MLR", "RF", "DT","Lasso", "ElasticNet"]
     for model in models:
     
         main_train(

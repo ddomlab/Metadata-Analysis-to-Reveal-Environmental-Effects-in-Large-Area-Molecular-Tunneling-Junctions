@@ -54,12 +54,12 @@ regressor_search_space = {
 
     "Lasso": {
         "regressor__regressor__alpha": Real(1e-4, 1e3, prior="log-uniform"),
-        "regressor__regressor__fit_intercept": [True],
+        # "regressor__regressor__fit_intercept": [True],
     },
 
     "Ridge": {
         "regressor__regressor__alpha": Real(1e-4, 1e3, prior="log-uniform"),
-        "regressor__regressor__fit_intercept": [True],
+        # "regressor__regressor__fit_intercept": [True],
     },
     "ElasticNet": {
         "regressor__regressor__alpha": Real(1e-4, 1e3, prior="log-uniform"),
