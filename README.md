@@ -14,6 +14,8 @@ The repository is set-up to make the results easy to reproduce. If you get stuck
 The environment.yml file specifies the conda virtual environment. :<br>
 <pre> conda env create -f environment.yml </pre>
 
+The `.ipynb` file is provided as a notebook script and should be executed in a Jupyter Notebook environment.
+
 ##  Repository Structure
 
 ```bash
