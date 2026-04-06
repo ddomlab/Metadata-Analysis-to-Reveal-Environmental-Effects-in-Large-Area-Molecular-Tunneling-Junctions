@@ -53,3 +53,5 @@ datasets/
 ## How to cite 
 
 If you liked, please cite the paper:
+https://doi.org/10.26434/chemrxiv.15001578/v1
+
