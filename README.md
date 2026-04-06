@@ -16,20 +16,20 @@ The environment.yml file specifies the conda virtual environment. :<br>
 
 The `.ipynb` file is provided as a notebook script and should be executed in a Jupyter Notebook environment.
 
-##  Repository Structure
+##  Repository Structure and Workflow
 
 ```bash
 code_/
 ├── utils.py  # Shared helper functions
 ├── cleaning_curation/
-│   ├── Append_weather_features.ipynb  # Add weather metadata
+│   ├── Append_weather_features.ipynb  # Add weather metadata (Meteostat)
 │   ├── Data_cleaning.ipynb  # Clean raw measurements
-│   └── EDA_and_Aggregation.ipynb  # Explore and aggregate data
+│   └── EDA_and_Aggregation.ipynb  # Data analysis and hierarchical data aggregation
 ├── compiling_converting_data/
 │   └── read_txt.py  # Parse raw text files
 └── Modeling/
-    ├── Residuals_modeling.ipynb  # Model residual variation
-    └── Simmons_fitting.ipynb  # Fit Simmons baseline model
+    ├── Residuals_modeling.ipynb  # Modeling residual variation
+    └── Simmons_fitting.ipynb  # Fit Simmons baseline model and physical insight
 
 datasets/
 ├── extracted_files/
@@ -43,10 +43,10 @@ datasets/
 │   ├── cleaned_scan_data.csv  # Cleaned scan-level records
 │   ├── spot_averaged_data.csv  # Spot-averaged measurements
 │   ├── substrate_averaged_clean_data.csv  # Clean substrate averages
-│   ├── substrate_averaged_data.csv  # Substrate average values
-│   ├── substrate_hierarchically_averaged_clean_data_residual_included.csv  # Hierarchical averages with residuals
-│   └── substrate_hierarchically_averaged_clean_data.csv  # Hierarchical averages
-└── raw/
+│   ├── substrate_averaged_data.csv  # Substrate level data
+│   ├── substrate_hierarchically_averaged_clean_data_residual_included.csv  # Hierarchical susbtrated-level data with residuals
+│   └── substrate_hierarchically_averaged_clean_data.csv  # Hierarchical susbtrated-level data
+└── raw/ # Initial Raw data 
 
 
 ```
