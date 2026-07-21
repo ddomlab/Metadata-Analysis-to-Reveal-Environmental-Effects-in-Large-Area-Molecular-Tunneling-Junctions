@@ -98,10 +98,14 @@ def add_outdoor_temperature_and_relative_humidity(weather_data, location_coordin
 
 def plot_indoor_outdoor_temperature_and_humidity(
         weather_data, save_folder, date_col='date_time', resample_rule='1h',
-        show_raw_points=False):
+        show_raw_points=False, font_size=14):
     """Plot indoor/outdoor temperature and humidity after resampling dense sensor data."""
     save_folder = Path(save_folder)
     save_folder.mkdir(parents=True, exist_ok=True)
+
+    indoor_color = '#fa6e81'
+    outdoor_color = '#41557d'
+    tick_font_size = font_size - 2
 
     temp_cols = ['SHT31 Temperature', 'outdoor temperature']
     humidity_cols = ['SHT31 Relative Humidity', 'outdoor relative humidity']
@@ -123,53 +127,88 @@ def plot_indoor_outdoor_temperature_and_humidity(
 
     smooth_data = resampled_data.rolling(24, min_periods=1).mean()
 
+    temp_pho = spearmanr(
+        plot_data['SHT31 Temperature'],
+        plot_data['outdoor temperature'],
+        nan_policy='omit'
+    )
+    humidity_pho = spearmanr(
+        plot_data['SHT31 Relative Humidity'],
+        plot_data['outdoor relative humidity'],
+        nan_policy='omit'
+    )
+
     sns.set_theme(style='whitegrid')
-    fig, axes = plt.subplots(2, 1, figsize=(15, 9), sharex=True)
+    fig, axes = plt.subplots(2, 1, figsize=(13, 9), sharex=True)
 
     if show_raw_points:
         axes[0].scatter(plot_data['datetime'], plot_data['SHT31 Temperature'],
-                        s=6, alpha=0.08, color='tab:blue', label='Indoor raw')
+                        s=6, alpha=0.08, color=indoor_color)
         axes[0].scatter(plot_data['datetime'], plot_data['outdoor temperature'],
-                        s=6, alpha=0.08, color='tab:orange', label='Outdoor raw')
+                        s=6, alpha=0.08, color=outdoor_color)
         axes[1].scatter(plot_data['datetime'], plot_data['SHT31 Relative Humidity'],
-                        s=6, alpha=0.08, color='tab:blue', label='Indoor raw')
+                        s=6, alpha=0.08, color=indoor_color)
         axes[1].scatter(plot_data['datetime'], plot_data['outdoor relative humidity'],
-                        s=6, alpha=0.08, color='tab:orange', label='Outdoor raw')
+                        s=6, alpha=0.08, color=outdoor_color)
 
     axes[0].plot(resampled_data.index, resampled_data['SHT31 Temperature'],
-                 color='tab:blue', alpha=0.35, linewidth=1, label=f'Indoor {resample_rule} median')
+                 color=indoor_color, alpha=0.35, linewidth=1)
     axes[0].plot(resampled_data.index, resampled_data['outdoor temperature'],
-                 color='tab:orange', alpha=0.35, linewidth=1, label=f'Outdoor {resample_rule} median')
-    axes[0].plot(smooth_data.index, smooth_data['SHT31 Temperature'],
-                 color='tab:blue', linewidth=2.5, label='Indoor 24-hour mean')
-    axes[0].plot(smooth_data.index, smooth_data['outdoor temperature'],
-                 color='tab:orange', linewidth=2.5, label='Outdoor 24-hour mean')
-    axes[0].set_ylabel('Temperature (C)')
-    axes[0].set_title('Indoor vs Outdoor Temperature')
-    axes[0].legend(ncol=2, frameon=True)
+                 color=outdoor_color, alpha=0.35, linewidth=1)
+    indoor_line, = axes[0].plot(smooth_data.index, smooth_data['SHT31 Temperature'],
+                                color=indoor_color, linewidth=2.5, label='Indoor')
+    outdoor_line, = axes[0].plot(smooth_data.index, smooth_data['outdoor temperature'],
+                                 color=outdoor_color, linewidth=2.5, label='Outdoor')
+    axes[0].set_ylabel('Temperature (C)', fontsize=font_size)
+    axes[0].text(
+        0.02, 0.95,
+        f"Spearman r = {temp_pho.statistic:.3f}",
+        transform=axes[0].transAxes,
+        va='top',
+        ha='left',
+        fontsize=tick_font_size,
+        bbox=dict(facecolor='white', alpha=0.5, edgecolor='gray',boxstyle="round,pad=0.3")
+    )
 
     axes[1].plot(resampled_data.index, resampled_data['SHT31 Relative Humidity'],
-                 color='tab:blue', alpha=0.35, linewidth=1, label=f'Indoor {resample_rule} median')
+                 color=indoor_color, alpha=0.35, linewidth=1)
     axes[1].plot(resampled_data.index, resampled_data['outdoor relative humidity'],
-                 color='tab:orange', alpha=0.35, linewidth=1, label=f'Outdoor {resample_rule} median')
+                 color=outdoor_color, alpha=0.35, linewidth=1)
     axes[1].plot(smooth_data.index, smooth_data['SHT31 Relative Humidity'],
-                 color='tab:blue', linewidth=2.5, label='Indoor 24-hour mean')
+                 color=indoor_color, linewidth=2.5)
     axes[1].plot(smooth_data.index, smooth_data['outdoor relative humidity'],
-                 color='tab:orange', linewidth=2.5, label='Outdoor 24-hour mean')
-    axes[1].set_ylabel('Relative Humidity (%)')
-    axes[1].set_xlabel('Date')
-    axes[1].set_title('Indoor vs Outdoor Relative Humidity')
-    axes[1].legend(ncol=2, frameon=True)
+                 color=outdoor_color, linewidth=2.5)
+    axes[1].set_ylabel('Relative Humidity (%)', fontsize=font_size)
+    axes[1].set_xlabel('Date', fontsize=font_size)
+    axes[1].text(
+        0.02, 0.95,
+        f"Spearman r = {humidity_pho.statistic:.3f}",
+        transform=axes[1].transAxes,
+        va='top',
+        ha='left',
+        fontsize=tick_font_size,
+        bbox=dict(facecolor='white', alpha=0.5, edgecolor='gray',boxstyle="round,pad=0.3")
+    )
 
     for ax in axes:
         ax.grid(True, alpha=0.25)
+        ax.tick_params(axis='both', labelsize=tick_font_size)
 
-    fig.tight_layout()
+    fig.legend(
+        handles=[indoor_line, outdoor_line],
+        labels=['Indoor', 'Outdoor'],
+        loc='upper center',
+        ncol=2,
+        frameon=True,
+        fontsize=font_size
+    )
+
+    fig.tight_layout(rect=[0, 0, 1, 0.95])
     fig.autofmt_xdate()
 
     output_png = save_folder / f"indoor_outdoor_temperature_humidity_{resample_rule}.png"
     # output_pdf = save_folder / f"indoor_outdoor_temperature_humidity_{resample_rule}.pdf"
-    fig.savefig(output_png, dpi=300, bbox_inches='tight')
+    fig.savefig(output_png, dpi=900, bbox_inches='tight')
     # fig.savefig(output_pdf, bbox_inches='tight')
     plt.close(fig)
 
@@ -197,7 +236,8 @@ if __name__ == "__main__":
         weather_data,
         save_folder=figure_folder,
         resample_rule='1h',
-        show_raw_points=False
+        show_raw_points=False,
+        font_size=18
     )
 
     print("Saved plots and resampled data:")

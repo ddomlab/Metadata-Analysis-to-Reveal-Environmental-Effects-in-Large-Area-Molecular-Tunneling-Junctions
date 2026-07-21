@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 from typing import List
-from scipy.stats import spearmanr
+from scipy.stats import spearmanr, pearsonr
 
 
 def distribution_plot(
@@ -104,15 +104,18 @@ def distribution_plot(
 
 ## Correlation + Distribution + scattering Plots in one heat pair plot
 
-def corrfunc(x, y, **kwds):
+def corrfunc(x, y, corr_type='spearman',**kwds):
     cmap = kwds['cmap']
     norm = kwds['norm']
     ax = plt.gca()
     ax.tick_params(bottom=False, top=False, left=False, right=False)
     sns.despine(ax=ax, bottom=True, top=True, left=True, right=True)
 
-    # Calculate Spearman correlation
-    r, _ = spearmanr(x, y)  # Change to spearmanr
+    # Calculate correlation
+    if corr_type == 'spearman':
+        r, _ = spearmanr(x, y)  # Change to spearmanr
+    elif corr_type == 'pearson':
+        r, _ = pearsonr(x, y)  # Change to pearsonr
     facecolor = cmap(norm(r))
     ax.set_facecolor(facecolor)
 
@@ -136,7 +139,7 @@ def plot_hexbin(x, y, color="blue",
                )
 
 
-def draw_heat_pair_plot(df: pd.DataFrame, parameters: list, title: str = '', hex_bin=False):
+def draw_heat_pair_plot(df: pd.DataFrame, parameters: list, title: str = '', hex_bin=False, corr_type='spearman'):
 
     m_df = df[parameters]
     # Create a PairGrid
@@ -147,7 +150,7 @@ def draw_heat_pair_plot(df: pd.DataFrame, parameters: list, title: str = '', hex
     else:
       g.map_lower(plt.scatter, s=10)
     g.map_diag(sns.histplot, kde=False)
-    g.map_upper(corrfunc, cmap=plt.get_cmap("vlag"), norm=plt.Normalize(vmin=-1, vmax=1))
+    g.map_upper(corrfunc, cmap=plt.get_cmap("vlag"), norm=plt.Normalize(vmin=-1, vmax=1),corr_type=corr_type)
 
     # Adjust ticks and labels for size
     for ax in g.axes.flatten():
